@@ -7,12 +7,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { VideosComponent } from './components/body/videos/videos.component';
-import { UploadComponent } from './components/body/upload/upload.component';
-import { PlayerComponent } from './components/body/player/player.component';
+import { VideosComponent } from './components/content/videos/videos.component';
+import { UploadComponent } from './components/content/upload/upload.component';
+import { PlayerComponent } from './components/content/player/player.component';
 import { MaterialModule } from './material/material.module';
-import { VideoCardComponent } from './components/body/videos/video-card/video-card.component';
-import { BodyComponent } from './components/body/body.component';
+import { VideoCardComponent } from './components/content/videos/video-card/video-card.component';
+import { ContentComponent } from './components/content/content.component';
 import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './core/app-state.reducer';
 import { effects } from './core/app-state.effects';
@@ -26,7 +26,7 @@ import { effects } from './core/app-state.effects';
     UploadComponent,
     PlayerComponent,
     VideoCardComponent,
-    BodyComponent,
+    ContentComponent,
   ],
   imports: [
     MaterialModule,

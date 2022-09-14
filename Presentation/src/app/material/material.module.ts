@@ -4,13 +4,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 const material = [
   MatToolbarModule,
   MatIconModule,
   MatCardModule,
   MatGridListModule,
-  MatDividerModule
+  MatDividerModule,
+  MatFormFieldModule,
+  MatSelectModule
 ];
 
 @NgModule({
