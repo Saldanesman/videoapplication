@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IVideo } from 'src/app/shared/model/video.model';
 
 @Component({
   selector: 'app-video-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-card.component.css']
 })
 export class VideoCardComponent implements OnInit {
+
+  @Input() video?: IVideo;
 
   constructor() { }
 

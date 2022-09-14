@@ -7,28 +7,34 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { UploadComponent } from './components/upload/upload.component';
-import { PlayerComponent } from './components/player/player.component';
+import { VideosComponent } from './components/body/videos/videos.component';
+import { UploadComponent } from './components/body/upload/upload.component';
+import { PlayerComponent } from './components/body/player/player.component';
 import { MaterialModule } from './material/material.module';
-import { VideoCardComponent } from './components/video-card/video-card.component';
+import { VideoCardComponent } from './components/body/videos/video-card/video-card.component';
+import { BodyComponent } from './components/body/body.component';
+import { AppRoutingModule } from './app-routing.module';
+import { reducers } from './core/app-state.reducer';
+import { effects } from './core/app-state.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
+    VideosComponent,
     UploadComponent,
     PlayerComponent,
     VideoCardComponent,
+    BodyComponent,
   ],
   imports: [
     MaterialModule,
     BrowserModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    BrowserAnimationsModule
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
