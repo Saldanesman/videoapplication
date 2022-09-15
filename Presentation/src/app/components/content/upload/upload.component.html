@@ -1,15 +1,41 @@
-<mat-form-field appearance="fill">
-    <mat-label>Input</mat-label>
-    <input matInput>
-</mat-form-field>
-<mat-form-field >
-    <mat-label>Select</mat-label>
-    <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
-    </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-</mat-form-field>
+<div class="mat-app-background container-col-center">
+    <h1>Upload a video</h1>
+    <form [formGroup]="formGroup">
+        <div class="container-col-center inputs">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <ng-container *ngIf="isFileSelected; then showFile else showSelectFile"></ng-container>
+        <ng-template #showSelectFile>
+            <button mat-raised-button color="accent"
+                (click)="inputFile.click()">Choose a video
+            </button>
+            <input hidden
+                type="file"
+                (change)="selectFile(inputFile.files)"
+                #inputFile
+            />
+        </ng-template>
+        <ng-template #showFile>
+            <button mat-raised-button color="accent">
+                    {{formGroup.controls.video.value?.name}}
+                <mat-icon   aria-hidden="false" 
+                            aria-label="Delete file" 
+                            fontIcon="close" 
+                            (click)="deleteFile()">
+                </mat-icon>
+            </button>
+        </ng-template>
+    </div>
+    </form>
+    <button mat-raised-button color="primary"
+        (click)="submitForm()">Submit
+    </button>
+</div>
+<!-- <mat-spinner></mat-spinner> -->

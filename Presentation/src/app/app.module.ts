@@ -16,6 +16,7 @@ import { ContentComponent } from './components/content/content.component';
 import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './core/app-state.reducer';
 import { effects } from './core/app-state.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { effects } from './core/app-state.effects';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
