@@ -14,7 +14,8 @@ export class UploadComponent implements OnInit {
   public formGroup = new FormGroup<IUploadVideoForm>({
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    video: new FormControl(null, {nonNullable: true, validators: Validators.required})
+    url: new FormControl('', {nonNullable: true, validators: Validators.required}),
+    image: new FormControl(null, {nonNullable: true, validators: Validators.required})
   });
 
   constructor() {
@@ -26,8 +27,8 @@ export class UploadComponent implements OnInit {
   public selectFile(fileList: FileList | null): void{
     if(fileList){
       const file = fileList[0];
-      this.formGroup.controls.video.patchValue(file);
-      this.formGroup.controls.video.updateValueAndValidity();
+      this.formGroup.controls.image.patchValue(file);
+      this.formGroup.controls.image.updateValueAndValidity();
       this.isFileSelected = true;
     }
     console.log("upload file");
@@ -35,7 +36,7 @@ export class UploadComponent implements OnInit {
   }
 
   public deleteFile(): void{
-    this.formGroup.controls.video.patchValue(null);
+    this.formGroup.controls.image.patchValue(null);
     this.isFileSelected = false;
     console.log("delete file");
     console.log(this.formGroup);
