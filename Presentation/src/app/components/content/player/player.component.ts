@@ -25,7 +25,7 @@ export class PlayerComponent implements OnInit {
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
     url: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    image: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
+    image: new FormControl('', {nonNullable: true, validators: Validators.required})
   });
 
   constructor(private readonly store: Store,
@@ -89,6 +89,7 @@ export class PlayerComponent implements OnInit {
       url: value.url!,
       image: value.image!
     };
+    console.log('save changes', videoUpdated);
     this.store.dispatch(UpdateVideo({video: videoUpdated}));
     this.editMode = false; // TODO: Use store.select instead
   }

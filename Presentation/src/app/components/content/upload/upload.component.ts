@@ -15,7 +15,7 @@ export class UploadComponent implements OnInit {
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
     url: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    image: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
+    image: new FormControl('', {nonNullable: true, validators: Validators.required})
   });
 
   constructor() {
@@ -24,7 +24,7 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public selectFile(fileList: FileList | null): void{
+  /* public selectFile(fileList: FileList | null): void{
     if(fileList){
       const file = fileList[0];
       this.formGroup.controls.image.patchValue(file);
@@ -40,7 +40,7 @@ export class UploadComponent implements OnInit {
     this.isFileSelected = false;
     console.log("delete file");
     console.log(this.formGroup);
-  }
+  } */
 
   public submitForm(): void{
     console.log("submit");

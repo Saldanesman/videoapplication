@@ -3,5 +3,6 @@ export interface IVideo {
     title: string,
     description: string,
     url: string,
-    image: File
+    //image: File
+    image: string
 }

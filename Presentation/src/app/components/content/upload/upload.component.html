@@ -14,8 +14,12 @@
             <mat-label>Video URL</mat-label>
             <input matInput formControlName="url">
         </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Previwe URL</mat-label>
+            <input matInput formControlName="image">
+        </mat-form-field>
 
-        <ng-container *ngIf="isFileSelected; then showFile else showSelectFile"></ng-container>
+        <!-- <ng-container *ngIf="isFileSelected; then showFile else showSelectFile"></ng-container>
         <ng-template #showSelectFile>
             <button mat-raised-button color="accent"
                 (click)="inputFile.click()">Choose an image
@@ -35,7 +39,7 @@
                             (click)="deleteFile()">
                 </mat-icon>
             </button>
-        </ng-template>
+        </ng-template> -->
     </div>
     </form>
     <button mat-raised-button color="primary"
