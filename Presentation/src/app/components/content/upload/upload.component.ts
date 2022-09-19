@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { VideoService } from 'src/app/service/video.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { UploadVideo } from 'src/app/core/videos/videos.action';
 import { IUploadVideoForm } from 'src/app/shared/model/video-form.model';
 import { IVideo } from 'src/app/shared/model/video.model';
 
@@ -21,8 +21,7 @@ export class UploadComponent implements OnInit {
     image: new FormControl('', {nonNullable: true, validators: Validators.required})
   });
 
-  constructor(private readonly videoService: VideoService,
-              private readonly router: Router) {
+  constructor(private readonly store: Store) {
   }
 
   ngOnInit(): void {
@@ -47,19 +46,16 @@ export class UploadComponent implements OnInit {
   } */
 
   public submitForm(): void{
-    console.log("submit");
-
     const value = this.formGroup.value;
-    const videoUpdated= {
+    const videoData: IVideo = {
       title: value.title!,
       description: value.description!,
       videoUrl: value.url!,
       miniatureUrl: value.image!
     };
 
-    this.videoService.createVideo(videoUpdated).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+    console.log("upload form: ", videoData);
+    this.store.dispatch(UploadVideo({video: videoData}));
   }
 
 }

@@ -27,7 +27,7 @@ export class VideoService {
     return this.httpClient.post<IVideo>(this.API, video);
   }
 
-  public createVideo(video: Object): Observable<IVideo> {
+  public uploadVideo(video: IVideo): Observable<IVideo> {
     return this.httpClient.post<IVideo>(this.API, video );
   }
 }

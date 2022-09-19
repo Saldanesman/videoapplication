@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
-import { ApiGetVideos, ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, UpdateVideo, UpdateVideoSuccess } from "./videos.action";
+import { ApiGetVideos, ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, UpdateVideo, UpdateVideoSuccess, UploadVideo, UploadVideoSuccess } from "./videos.action";
 import { VideoService } from "src/app/service/video.service";
 import { Router } from "@angular/router";
 
@@ -21,7 +21,7 @@ export class VideosEffects {
             mergeMap((action) => {
                 console.log('Get Api in process');
                 return this.videoService.getVideos().pipe(
-                    map(res => ApiGetVideosSuccess({videos: res})),
+                    map(res => ApiGetVideosSuccess({ videos: res })),
                     catchError(error => of(error)),
                     tap (() => {console.log('Get End')})
                 );
@@ -34,11 +34,26 @@ export class VideosEffects {
             ofType(UpdateVideo),
             tap(() => { console.log('UpdateVideo in queue') }),
             mergeMap((action) => {
-                console.log('UpdateVideo in process',action.video);
+                console.log('UpdateVideo in process', action.video);
                 return this.videoService.updateVideo(action.video).pipe(
-                    map(res => UpdateVideoSuccess({video: res})),
+                    map(res => UpdateVideoSuccess({ video: res })),
                     catchError(error => of(error)),
                     tap (() => {console.log('UpdateVideo End')})
+                );
+            })
+        );
+    });
+
+    uploadVideoEffects$ = createEffect( () => {
+        return this.action$.pipe(
+            ofType(UploadVideo),
+            tap(() => { console.log('UploadVideo in queue') }),
+            mergeMap((action) => {
+                console.log('UploadVideo in process', action.video);
+                return this.videoService.uploadVideo(action.video).pipe(
+                    map(res => UploadVideoSuccess({ video: res })),
+                    catchError(error => of(error)),
+                    tap (() => {console.log('UploadVideo End')})
                 );
             })
         );
@@ -61,7 +76,7 @@ export class VideosEffects {
 
     goToHomeEffects$ = createEffect( () => {
         return this.action$.pipe(
-            ofType(DeleteVideoByIdSuccess),
+            ofType(DeleteVideoByIdSuccess, UploadVideoSuccess),
             tap(() => { 
                 console.log('Go to Home');
                 this.router.navigate(['/'])
