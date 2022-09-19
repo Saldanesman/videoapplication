@@ -32,7 +32,8 @@ public class VideoController {
 
         videoFromBd.setTitle(video.getTitle());
         videoFromBd.setDescription(video.getDescription());
-        //videoFromBd.setData(video.getData());
+        videoFromBd.setVideoUrl(video.getVideoUrl());
+        videoFromBd.setMiniatureUrl(video.getMiniatureUrl());
 
         return videoRepository.save(videoFromBd);
     }
