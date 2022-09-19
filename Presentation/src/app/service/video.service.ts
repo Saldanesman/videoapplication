@@ -8,18 +8,19 @@ import { IVideo } from '../shared/model/video.model';
 export class VideoService {
   private readonly API = 'http://localhost:8080/videos';
 
+  private example_img = 'https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg';
   private mock = [
     //{id: '0', title: 'titulo0', description: 'description0', url: 'https://www.youtube.com/watch?v=DEgKTGRUGcI', image: new File([new Blob()], 'image0')},
-    {id: '0', title: 'titulo0', description: 'description0', url: 'https://www.youtube.com/watch?v=DEgKTGRUGcI', image: 'image0'},
-    {id: '1', title: 'titulo1', description: 'description1', url: 'https://www.youtube.com/watch?v=-fVQaHBvVJo', image: 'image1'},
-    {id: '2', title: 'titulo2', description: 'description2', url: 'https://www.youtube.com/watch?v=RuPrS2Jgdfs', image: 'image2'},
-    {id: '3', title: 'titulo3', description: 'description3', url: 'url3', image: 'image3'},
-    {id: '4', title: 'titulo4', description: 'description4', url: 'url4', image: 'image4'},
-    {id: '5', title: 'titulo5', description: 'description5', url: 'url5', image: 'image5'},
-    {id: '6', title: 'titulo6', description: 'description6', url: 'url6', image: 'image6'},
-    {id: '7', title: 'titulo7', description: 'description7', url: 'url7', image: 'image7'},
-    {id: '8', title: 'titulo8', description: 'description8', url: 'url8', image: 'image8'},
-    {id: '9', title: 'titulo9', description: 'description9', url: 'url9', image: 'image9'}
+    {id: '0', title: 'titulo0', description: 'description0', url: 'https://www.youtube.com/watch?v=DEgKTGRUGcI', image: this.example_img},
+    {id: '1', title: 'titulo1', description: 'description1', url: 'https://www.youtube.com/watch?v=-fVQaHBvVJo', image: this.example_img},
+    {id: '2', title: 'titulo2', description: 'description2', url: 'https://www.youtube.com/watch?v=RuPrS2Jgdfs', image: this.example_img},
+    {id: '3', title: 'titulo3', description: 'description3', url: 'url3', image: this.example_img},
+    {id: '4', title: 'titulo4', description: 'description4', url: 'url4', image: this.example_img},
+    {id: '5', title: 'titulo5', description: 'description5', url: 'url5', image: this.example_img},
+    {id: '6', title: 'titulo6', description: 'description6', url: 'url6', image: this.example_img},
+    {id: '7', title: 'titulo7', description: 'description7', url: 'url7', image: this.example_img},
+    {id: '8', title: 'titulo8', description: 'description8', url: 'url8', image: this.example_img},
+    {id: '9', title: 'titulo9', description: 'description9', url: 'url9', image: this.example_img}
   ];
 
   constructor() { }
