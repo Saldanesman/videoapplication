@@ -1,0 +1,45 @@
+<div class="container-col-center">
+    <h1>Upload a video</h1>
+    <form [formGroup]="formGroup">
+        <div class="container-col-center inputs">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Video URL</mat-label>
+            <input matInput formControlName="url">
+        </mat-form-field>
+
+        <ng-container *ngIf="isFileSelected; then showFile else showSelectFile"></ng-container>
+        <ng-template #showSelectFile>
+            <button mat-raised-button color="accent"
+                (click)="inputFile.click()">Choose an image
+            </button>
+            <input hidden
+                type="file"
+                (change)="selectFile(inputFile.files)"
+                #inputFile
+            />
+        </ng-template>
+        <ng-template #showFile>
+            <button mat-raised-button color="accent">
+                    {{formGroup.controls.image.value?.name}}
+                <mat-icon   aria-hidden="false" 
+                            aria-label="Delete file" 
+                            fontIcon="close" 
+                            (click)="deleteFile()">
+                </mat-icon>
+            </button>
+        </ng-template>
+    </div>
+    </form>
+    <button mat-raised-button color="primary"
+        (click)="submitForm()">Submit
+    </button>
+</div>
+<!-- <mat-spinner></mat-spinner> -->

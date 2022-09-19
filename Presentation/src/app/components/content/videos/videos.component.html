@@ -1,0 +1,9 @@
+<div class="main">
+    <div>
+      <mat-grid-list cols="4" rowHeight="1:1">
+        <mat-grid-tile *ngFor="let video of videos$ | async">
+          <app-video-card [video]="video"></app-video-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+</div>

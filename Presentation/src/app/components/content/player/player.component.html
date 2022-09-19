@@ -1,0 +1,62 @@
+<div class="container-col-center">
+    <div>
+        <youtube-player [videoId]="videoId"></youtube-player>
+        <ng-container *ngIf="editMode; then showEditMode else showNoEditMode"></ng-container>
+        <ng-template #showNoEditMode>
+            <div class="container-row-center">
+                <div>
+                    <h1>{{video?.title}}</h1>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" style="margin-right: 1rem;" (click)="editVideo()">
+                        Edit
+                        <mat-icon aria-hidden="false" aria-label="Edit Video" fontIcon="edit"></mat-icon>
+                    </button>
+                    <button mat-raised-button color="warn" (click)="openConfirmDialog()">
+                        Delete
+                        <mat-icon aria-hidden="false" aria-label="Delete Video" fontIcon="delete"></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div>
+                <p>{{video?.description}}</p>
+            </div>
+        </ng-template>
+        <ng-template #showEditMode>
+            <form [formGroup]="formGroup">
+                <div class="container-row-center">
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Title</mat-label>
+                            <input matInput formControlName="title">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" style="margin-right: 1rem;" (click)="saveChanges()">
+                            Save changes
+                            <mat-icon aria-hidden="false" aria-label="Save changes" fontIcon="done"></mat-icon>
+                        </button>
+                        <button mat-raised-button color="accent" style="margin-right: 1rem;" (click)="cancelEdit()">
+                            Cancel
+                            <mat-icon aria-hidden="false" aria-label="Cancel Edit Video" fontIcon="close"></mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div hidden>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Video URL</mat-label>
+                        <input matInput formControlName="url">
+                    </mat-form-field>
+                </div>
+            </form>
+        </ng-template>
+    </div>
+</div>
