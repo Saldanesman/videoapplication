@@ -7,3 +7,8 @@ export const selectVideos = createSelector(
     getVideosState,
     (state: VideosState) => state.videos
 );
+
+export const selectCurrentVideo = createSelector(
+    getVideosState,
+    (state: VideosState) => state.currentVideo
+);

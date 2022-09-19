@@ -15,7 +15,7 @@ export class UploadComponent implements OnInit {
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
     url: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    image: new FormControl(null, {nonNullable: true, validators: Validators.required})
+    image: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
   });
 
   constructor() {
@@ -36,7 +36,7 @@ export class UploadComponent implements OnInit {
   }
 
   public deleteFile(): void{
-    this.formGroup.controls.image.patchValue(null);
+    this.formGroup.controls.image.patchValue(undefined);
     this.isFileSelected = false;
     console.log("delete file");
     console.log(this.formGroup);

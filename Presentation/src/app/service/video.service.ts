@@ -9,7 +9,7 @@ export class VideoService {
   private readonly API = 'http://localhost:8080/videos';
 
   private mock = [
-    {id: '0', title: 'titulo0', description: 'description0', url: 'url0', image: 'data0'},
+    {id: '0', title: 'titulo0', description: 'description0', url: 'https://www.youtube.com/watch?v=DEgKTGRUGcI', image: 'data0'},
     {id: '1', title: 'titulo1', description: 'description1', url: 'url1', image: 'data1'},
     {id: '2', title: 'titulo2', description: 'description2', url: 'url2', image: 'data2'},
     {id: '3', title: 'titulo3', description: 'description3', url: 'url3', image: 'data3'},
@@ -24,10 +24,14 @@ export class VideoService {
   constructor() { }
 
   public getVideos(): Observable<IVideo[]> {
-    return of(this.mock).pipe(delay(3000));
+    return of(this.mock).pipe(delay(2000));
   }
 
   public getVideoById(id: string): Observable<IVideo> {
-    return of(this.mock[2]).pipe(delay(3000));
+    return of(this.mock[2]).pipe(delay(2000));
+  }
+
+  public deleteVideoById(id: string): Observable<string> {
+    return of('Deleted').pipe(delay(2000));
   }
 }

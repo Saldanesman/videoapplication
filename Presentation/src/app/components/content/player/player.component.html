@@ -1,1 +1,25 @@
-<p>player works!</p>
+<div class="container-col-center">
+    <div>
+        <p>{{video?.id}}</p>
+        <youtube-player [videoId]="videoId"></youtube-player>
+        <div class="container-row-center">
+            <div>
+                <h1>{{video?.title}}</h1>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" style="margin-right: 1rem;" (click)="editVideo()">
+                    Edit
+                    <mat-icon aria-hidden="false" aria-label="Edit Video" fontIcon="edit"></mat-icon>
+                </button>
+                <button mat-raised-button color="warn" (click)="openConfirmDialog()">
+                    Delete
+                    <mat-icon aria-hidden="false" aria-label="Delete Video" fontIcon="delete"></mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+            <p>{{video?.description}}</p>
+        </div>
+    </div>
+</div>

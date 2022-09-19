@@ -17,6 +17,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './core/app-state.reducer';
 import { effects } from './core/app-state.effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import {YouTubePlayerModule} from '@angular/youtube-player';
+import { ConfirmDialogComponent } from './components/content/player/confirm-dialog/confirm-dialog.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PlayerComponent,
     VideoCardComponent,
     ContentComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -36,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     EffectsModule.forRoot(effects),
     BrowserAnimationsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    YouTubePlayerModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

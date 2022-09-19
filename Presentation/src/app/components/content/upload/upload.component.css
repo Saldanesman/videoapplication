@@ -17,7 +17,7 @@
     border: 1px solid white;
 }
 
-.choosefile {
+.container-row-center {
     display: flex;
     align-items: center;
 }

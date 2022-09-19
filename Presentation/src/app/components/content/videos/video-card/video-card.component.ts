@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { SetCurrentVideo } from 'src/app/core/videos/videos.action';
 import { IVideo } from 'src/app/shared/model/video.model';
 
 @Component({
@@ -10,9 +12,15 @@ export class VideoCardComponent implements OnInit {
 
   @Input() video?: IVideo;
 
-  constructor() { }
+  constructor(private readonly store: Store) { }
 
   ngOnInit(): void {
+  }
+
+  public storeVideo(): void {
+    if(this.video){
+      this.store.dispatch(SetCurrentVideo({video: this.video}));
+    }
   }
 
 }

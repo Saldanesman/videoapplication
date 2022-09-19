@@ -4,5 +4,5 @@ export interface IUploadVideoForm {
     title: FormControl<string>,
     description: FormControl<string>,
     url: FormControl<string>,
-    image: FormControl<File | null>
+    image: FormControl<File | undefined>
 }

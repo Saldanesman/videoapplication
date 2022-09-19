@@ -2,14 +2,16 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
-import { ApiGetVideos, ApiGetVideosSuccess } from "./videos.action";
+import { ApiGetVideos, ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess } from "./videos.action";
 import { VideoService } from "src/app/service/video.service";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class VideosEffects {
     constructor( 
         private action$: Actions,
-        private videoService: VideoService
+        private videoService: VideoService,
+        private router: Router
     ) {  }
         
     getVideosEffects$ = createEffect( () => {
@@ -27,4 +29,28 @@ export class VideosEffects {
         );
     });
 
+    deleteVideoByIdEffects$ = createEffect( () => {
+        return this.action$.pipe(
+            ofType(DeleteVideoById),
+            tap(() => { console.log('DeleteVideoById in queue') }),
+            mergeMap((action) => {
+                console.log('DeleteVideoById in process', action.id);
+                return this.videoService.deleteVideoById(action.id).pipe(
+                    map(res => DeleteVideoByIdSuccess()),
+                    catchError(error => of(error)),
+                    tap (() => {console.log('DeleteVideoById End')})
+                );
+            })
+        );
+    });
+
+    goToHomeEffects$ = createEffect( () => {
+        return this.action$.pipe(
+            ofType(DeleteVideoByIdSuccess),
+            tap(() => { 
+                console.log('Go to Home');
+                this.router.navigate(['/'])
+            }),
+        );
+    }, {dispatch: false});
 }
