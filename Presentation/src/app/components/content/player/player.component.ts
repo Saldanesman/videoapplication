@@ -4,7 +4,9 @@ import { selectCurrentVideo } from 'src/app/core/videos/videos.selector';
 import { IVideo } from 'src/app/shared/model/video.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { DeleteVideoById } from 'src/app/core/videos/videos.action';
+import { DeleteVideoById, UpdateVideo } from 'src/app/core/videos/videos.action';
+import { IUploadVideoForm } from 'src/app/shared/model/video-form.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-player',
@@ -17,6 +19,14 @@ export class PlayerComponent implements OnInit {
   public video?: IVideo;
 
   public videoId = 'fr1QvKg_6MU';
+
+  public editMode = false;
+  public formGroup = new FormGroup<IUploadVideoForm>({
+    title: new FormControl('', {nonNullable: true, validators: Validators.required}),
+    description: new FormControl('', {nonNullable: true, validators: Validators.required}),
+    url: new FormControl('', {nonNullable: true, validators: Validators.required}),
+    image: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
+  });
 
   constructor(private readonly store: Store,
               public dialog: MatDialog) { }
@@ -49,6 +59,13 @@ export class PlayerComponent implements OnInit {
 
   public editVideo(): void{
     console.log("edit video");
+    this.editMode = true; // TODO: Use store.select instead
+    this.formGroup.patchValue({
+      title: this.video?.title,
+      description: this.video?.description,
+      url: this.video?.url,
+      image: this.video?.image
+    });
   }
 
   public openConfirmDialog(): void {
@@ -60,6 +77,25 @@ export class PlayerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  public saveChanges(): void {
+    console.log('save changes');
+    const value = this.formGroup.value;
+    const videoUpdated: IVideo= {
+      id: this.video?.id!,
+      title: value.title!,
+      description: value.description!,
+      url: value.url!,
+      image: value.image!
+    };
+    this.store.dispatch(UpdateVideo({video: videoUpdated}));
+    this.editMode = false; // TODO: Use store.select instead
+  }
+
+  public cancelEdit(): void {
+    console.log('Cancel edit');
+    this.editMode = false; // TODO: Use store.select instead
   }
 
 }

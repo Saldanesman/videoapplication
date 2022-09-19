@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { IVideo } from "src/app/shared/model/video.model";
-import { ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, SetCurrentVideo } from "./videos.action";
+import { ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, SetCurrentVideo, UpdateVideo, UpdateVideoSuccess } from "./videos.action";
 
 export const videosKey = 'videos';
 
@@ -10,6 +10,7 @@ export interface VideosState {
     currentVideo?: IVideo;
     currentVideoIsLoading: boolean;
     deleteIsLoading: boolean;
+    updateIsLoading?: boolean;
 }
 
 export const initialState: VideosState = {
@@ -26,5 +27,8 @@ export const videosReducer = createReducer(
     on(SetCurrentVideo, (state, action) => ({ ...state, currentVideo: action.video })),
 
     on(DeleteVideoById, (state, action) => ({ ...state, deleteIsLoading: true })),
-    on(DeleteVideoByIdSuccess, (state, action) => ({ ...state, deleteIsLoading: false }))
+    on(DeleteVideoByIdSuccess, (state, action) => ({ ...state, deleteIsLoading: false })),
+
+    on(UpdateVideo, (state, action) => ({ ...state, updateIsLoading: true })),
+    on(UpdateVideoSuccess, (state, action) => ({ ...state, currentVideo:action.video, updateIsLoading: false }))
 );
