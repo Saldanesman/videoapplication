@@ -15,6 +15,7 @@ export class VideoCardComponent implements OnInit {
   constructor(private readonly store: Store) { }
 
   ngOnInit(): void {
+    console.log("Video: ", this.video?.videoUrl);
   }
 
   public storeVideo(): void {

@@ -21,6 +21,7 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
 import { ConfirmDialogComponent } from './components/content/player/confirm-dialog/confirm-dialog.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { environment } from '../environments/environment';
     ConfirmDialogComponent
   ],
   imports: [
+    HttpClientModule,
     MaterialModule,
     BrowserModule,
     StoreModule.forRoot(reducers),

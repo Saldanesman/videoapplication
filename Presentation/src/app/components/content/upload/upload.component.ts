@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { VideoService } from 'src/app/service/video.service';
 import { IUploadVideoForm } from 'src/app/shared/model/video-form.model';
+import { IVideo } from 'src/app/shared/model/video.model';
 
 @Component({
   selector: 'app-upload',
@@ -18,7 +21,8 @@ export class UploadComponent implements OnInit {
     image: new FormControl('', {nonNullable: true, validators: Validators.required})
   });
 
-  constructor() {
+  constructor(private readonly videoService: VideoService,
+              private readonly router: Router) {
   }
 
   ngOnInit(): void {
@@ -44,8 +48,18 @@ export class UploadComponent implements OnInit {
 
   public submitForm(): void{
     console.log("submit");
-    console.log(this.formGroup.valid);
-    console.log(this.formGroup);
+
+    const value = this.formGroup.value;
+    const videoUpdated= {
+      title: value.title!,
+      description: value.description!,
+      videoUrl: value.url!,
+      miniatureUrl: value.image!
+    };
+
+    this.videoService.createVideo(videoUpdated).subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 
 }

@@ -43,7 +43,7 @@ export class PlayerComponent implements OnInit {
   }
 
   private getVideoId(video: IVideo): string {
-    const params = new URL(video.url).searchParams;
+    const params = new URL(video.videoUrl).searchParams;
     const videoId = params.get('v');
     return videoId ?? '';
   }
@@ -63,8 +63,8 @@ export class PlayerComponent implements OnInit {
     this.formGroup.patchValue({
       title: this.video?.title,
       description: this.video?.description,
-      url: this.video?.url,
-      image: this.video?.image
+      url: this.video?.videoUrl,
+      image: this.video?.miniatureUrl
     });
   }
 
@@ -86,8 +86,8 @@ export class PlayerComponent implements OnInit {
       id: this.video?.id!,
       title: value.title!,
       description: value.description!,
-      url: value.url!,
-      image: value.image!
+      videoUrl: value.url!,
+      miniatureUrl: value.image!
     };
     console.log('save changes', videoUpdated);
     this.store.dispatch(UpdateVideo({video: videoUpdated}));
