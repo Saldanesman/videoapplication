@@ -21,3 +21,11 @@
     display: flex;
     align-items: center;
 }
+
+.wrapper-form {
+    width: 40%;
+}
+
+mat-form-field {
+    width: 100%;
+}

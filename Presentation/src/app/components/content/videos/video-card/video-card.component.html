@@ -1,9 +1,8 @@
 <a routerLink="/play-video" (click)="storeVideo()">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>{{video?.title}}</mat-card-title>
-            <mat-card-subtitle>{{video?.description}}</mat-card-subtitle>
+            <mat-card-title>{{video?.title | slice : 0 : 40}}{{video?.title?.length! > 40 ? '...' : ''}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image [src]="video?.miniatureUrl" alt="Photo of a Shiba Inu TODO:">
+        <img mat-card-image [src]="video?.miniatureUrl" [alt]="video?.title">
     </mat-card>
 </a>

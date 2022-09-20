@@ -46,6 +46,11 @@ export class UploadComponent implements OnInit {
   } */
 
   public submitForm(): void{
+    if(!this.formGroup.valid) {
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     const value = this.formGroup.value;
     const videoData: IVideo = {
       title: value.title!,

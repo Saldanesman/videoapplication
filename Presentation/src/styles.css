@@ -6,7 +6,7 @@ html, body {
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-app-root {
+/* app-root {
     min-height: 100%;
     display: block;
     position: relative;
@@ -18,4 +18,4 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-}
+} */

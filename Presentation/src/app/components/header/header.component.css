@@ -7,3 +7,28 @@
     border: 0px;
     color: white;
 }
+
+.link-header {
+    text-decoration: none;
+    color: white;
+    margin-right: 30%;
+}
+
+.link-container {
+    width: 25vw;
+    margin-left: 60%;
+}
+
+.efecto {
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.efecto:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
