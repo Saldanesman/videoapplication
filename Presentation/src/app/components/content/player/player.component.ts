@@ -80,6 +80,11 @@ export class PlayerComponent implements OnInit {
   }
 
   public saveChanges(): void {
+    if(!this.formGroup.valid) {
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
     console.log('save changes');
     const value = this.formGroup.value;
     const videoUpdated: IVideo= {
