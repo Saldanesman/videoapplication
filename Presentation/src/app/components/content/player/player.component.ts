@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectCurrentVideo } from 'src/app/core/videos/videos.selector';
+import { selectCurrentVideo } from 'src/app/core/videos/videos.selectors';
 import { IVideo } from 'src/app/shared/model/video.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { DeleteVideoById, UpdateVideo } from 'src/app/core/videos/videos.action';
+import { DeleteVideoById, UpdateVideo } from 'src/app/core/videos/videos.actions';
 import { IUploadVideoForm } from 'src/app/shared/model/video-form.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -24,37 +24,19 @@ export class PlayerComponent implements OnInit {
   public formGroup = new FormGroup<IUploadVideoForm>({
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    url: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    image: new FormControl('', {nonNullable: true, validators: Validators.required})
+    video: new FormControl(undefined, {nonNullable: true, validators: Validators.required}),
+    miniature: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
   });
 
   constructor(private readonly store: Store,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.loadYoutubeAPI();
-
     this.store.select(selectCurrentVideo).subscribe(video => {
       if(video){
         this.video = video;
-        this.videoId = this.getVideoId(this.video) ?? this.videoId;
       }
     });
-  }
-
-  private getVideoId(video: IVideo): string {
-    const params = new URL(video.videoUrl).searchParams;
-    const videoId = params.get('v');
-    return videoId ?? '';
-  }
-
-  private loadYoutubeAPI(): void {
-    if(!this.apiLoaded) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.body.appendChild(tag);
-      this.apiLoaded = true;
-    }
   }
 
   public editVideo(): void{
@@ -63,8 +45,8 @@ export class PlayerComponent implements OnInit {
     this.formGroup.patchValue({
       title: this.video?.title,
       description: this.video?.description,
-      url: this.video?.videoUrl,
-      image: this.video?.miniatureUrl
+      video: this.video?.video,
+      miniature: this.video?.miniature
     });
   }
 
@@ -91,8 +73,8 @@ export class PlayerComponent implements OnInit {
       id: this.video?.id!,
       title: value.title!,
       description: value.description!,
-      videoUrl: value.url!,
-      miniatureUrl: value.image!
+      video: value.video!,
+      miniature: value.miniature!
     };
     console.log('save changes', videoUpdated);
     this.store.dispatch(UpdateVideo({video: videoUpdated}));

@@ -22,6 +22,7 @@ import { ConfirmDialogComponent } from './components/content/player/confirm-dial
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { SelectFileComponent } from './components/content/upload/select-file/select-file.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     PlayerComponent,
     VideoCardComponent,
     ContentComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SelectFileComponent
   ],
   imports: [
     HttpClientModule,

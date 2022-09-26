@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
-import { ApiGetVideos, ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, UpdateVideo, UpdateVideoSuccess, UploadVideo, UploadVideoSuccess } from "./videos.action";
+import { ApiGetVideos, ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, UpdateVideo, UpdateVideoSuccess, UploadVideo, UploadVideoSuccess } from "./videos.actions";
 import { VideoService } from "src/app/service/video.service";
 import { Router } from "@angular/router";
 

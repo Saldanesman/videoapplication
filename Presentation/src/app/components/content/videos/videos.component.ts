@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ApiGetVideos } from 'src/app/core/videos/videos.action';
-import { selectVideos } from 'src/app/core/videos/videos.selector';
+import { ApiGetVideos } from 'src/app/core/videos/videos.actions';
+import { selectVideos } from 'src/app/core/videos/videos.selectors';
 
 @Component({
   selector: 'app-videos',

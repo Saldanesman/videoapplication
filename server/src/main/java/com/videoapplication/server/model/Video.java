@@ -15,16 +15,18 @@ public class Video {
     private String id;
     private String title;
     private String description;
-    private String videoUrl;
-    private String miniatureUrl;
+    //private String videoUrl;
+    //private String miniatureUrl;
+    private File video;
+    private File miniature;
 
 
-
-
-    public Video(String title, String description, String videoUrl, String miniatureUrl) {
+    public Video(String title, String description, File video, File miniature) {
         this.title = title;
         this.description = description;
-        this.videoUrl = videoUrl;
-        this.miniatureUrl = miniatureUrl;
+        //this.videoUrl = videoUrl;
+        //this.miniatureUrl = miniatureUrl;
+        this.video = video;
+        this.miniature = miniature;
     }
 }

@@ -3,6 +3,6 @@
         <mat-card-header>
             <mat-card-title>{{video?.title | slice : 0 : 40}}{{video?.title?.length! > 40 ? '...' : ''}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image [src]="video?.miniatureUrl" [alt]="video?.title">
+        <img mat-card-image [src]="video?.miniature?.url" [alt]="video?.title">
     </mat-card>
 </a>

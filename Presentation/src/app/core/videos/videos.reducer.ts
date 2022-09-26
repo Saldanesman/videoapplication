@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { IVideo } from "src/app/shared/model/video.model";
-import { ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, SetCurrentVideo, UpdateVideo, UpdateVideoSuccess, UploadVideo, UploadVideoSuccess } from "./videos.action";
+import { ApiGetVideosSuccess, DeleteVideoById, DeleteVideoByIdSuccess, SetCurrentVideo, UpdateVideo, UpdateVideoSuccess, UploadVideo, UploadVideoSuccess } from "./videos.actions";
 
 export const videosKey = 'videos';
 

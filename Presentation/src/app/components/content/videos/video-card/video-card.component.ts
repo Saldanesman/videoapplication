@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SetCurrentVideo } from 'src/app/core/videos/videos.action';
+import { SetCurrentVideo } from 'src/app/core/videos/videos.actions';
 import { IVideo } from 'src/app/shared/model/video.model';
 
 @Component({

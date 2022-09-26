@@ -1,10 +1,13 @@
 package com.videoapplication.server.controller;
 
+import com.videoapplication.server.model.File;
 import com.videoapplication.server.model.Video;
 import com.videoapplication.server.repo.VideoRepository;
+import com.videoapplication.server.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -14,6 +17,9 @@ import java.util.List;
 public class VideoController {
     @Autowired
     private VideoRepository videoRepository;
+
+    @Autowired
+    private FileService fileService;
 
     @GetMapping("")
     List<Video> index() {
@@ -32,8 +38,8 @@ public class VideoController {
 
         videoFromBd.setTitle(video.getTitle());
         videoFromBd.setDescription(video.getDescription());
-        videoFromBd.setVideoUrl(video.getVideoUrl());
-        videoFromBd.setMiniatureUrl(video.getMiniatureUrl());
+        videoFromBd.setVideo(video.getVideo());
+        videoFromBd.setMiniature(video.getMiniature());
 
         return videoRepository.save(videoFromBd);
     }
@@ -43,5 +49,11 @@ public class VideoController {
     void delete(@PathVariable String id) {
         Video video = videoRepository.findById(id).orElseThrow(RuntimeException::new);
         videoRepository.delete(video);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "upload-file")
+    File uploadFile(@RequestParam("file") MultipartFile multipartFile) {
+        return fileService.uploadFile(multipartFile);
     }
 }

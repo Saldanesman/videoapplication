@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { UploadVideo } from 'src/app/core/videos/videos.action';
+import { UploadVideo } from 'src/app/core/videos/videos.actions';
 import { IUploadVideoForm } from 'src/app/shared/model/video-form.model';
 import { IVideo } from 'src/app/shared/model/video.model';
 
@@ -17,36 +17,18 @@ export class UploadComponent implements OnInit {
   public formGroup = new FormGroup<IUploadVideoForm>({
     title: new FormControl('', {nonNullable: true, validators: Validators.required}),
     description: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    url: new FormControl('', {nonNullable: true, validators: Validators.required}),
-    image: new FormControl('', {nonNullable: true, validators: Validators.required})
+    video: new FormControl(undefined, {nonNullable: true, validators: Validators.required}),
+    miniature: new FormControl(undefined, {nonNullable: true, validators: Validators.required})
   });
 
   constructor(private readonly store: Store) {
   }
 
-  ngOnInit(): void {
-  }
-
-  /* public selectFile(fileList: FileList | null): void{
-    if(fileList){
-      const file = fileList[0];
-      this.formGroup.controls.image.patchValue(file);
-      this.formGroup.controls.image.updateValueAndValidity();
-      this.isFileSelected = true;
-    }
-    console.log("upload file");
-    console.log(this.formGroup);
-  }
-
-  public deleteFile(): void{
-    this.formGroup.controls.image.patchValue(undefined);
-    this.isFileSelected = false;
-    console.log("delete file");
-    console.log(this.formGroup);
-  } */
+  ngOnInit(): void {}
 
   public submitForm(): void{
     if(!this.formGroup.valid) {
+      console.log("Is valid the form? ", this.formGroup.valid, this.formGroup);
       this.formGroup.markAllAsTouched();
       return;
     }
@@ -55,8 +37,8 @@ export class UploadComponent implements OnInit {
     const videoData: IVideo = {
       title: value.title!,
       description: value.description!,
-      videoUrl: value.url!,
-      miniatureUrl: value.image!
+      video: value.video!,
+      miniature: value.miniature!
     };
 
     console.log("upload form: ", videoData);

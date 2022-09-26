@@ -1,8 +1,14 @@
 <div class="container-col-center">
-    <div>
-        <youtube-player [videoId]="videoId"></youtube-player>
-        <ng-container *ngIf="editMode; then showEditMode else showNoEditMode"></ng-container>
-        <ng-template #showNoEditMode>
+    <div class="size">
+        <div class="videoBgWrapper">
+            <video class="videoBg" controls>
+                <source [src]="video?.video?.url">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <ng-container *ngIf="editMode; then showEditMode else showNormalMode"></ng-container>
+        <ng-template #showNormalMode>
             <div class="container-row-center">
                 <div>
                     <h1>{{video?.title}}</h1>
@@ -33,11 +39,11 @@
                         </mat-form-field>
                     </div>
                     <div>
-                        <button mat-raised-button color="primary" style="margin-right: 1rem;" (click)="saveChanges()">
+                        <button type="button" mat-raised-button color="primary" style="margin-right: 1rem;" (click)="saveChanges()">
                             Save changes
                             <mat-icon aria-hidden="false" aria-label="Save changes" fontIcon="done"></mat-icon>
                         </button>
-                        <button mat-raised-button color="accent" style="margin-right: 1rem;" (click)="cancelEdit()">
+                        <button type="button" mat-raised-button color="accent" style="margin-right: 1rem;" (click)="cancelEdit()">
                             Cancel
                             <mat-icon aria-hidden="false" aria-label="Cancel Edit Video" fontIcon="close"></mat-icon>
                         </button>
@@ -48,18 +54,6 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Description</mat-label>
                         <textarea matInput formControlName="description"></textarea>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Video URL</mat-label>
-                        <input matInput formControlName="url">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Previwe URL</mat-label>
-                        <input matInput formControlName="image">
                     </mat-form-field>
                 </div>
             </form>

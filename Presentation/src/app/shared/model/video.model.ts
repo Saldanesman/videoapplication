@@ -1,8 +1,9 @@
+import { IFile } from "./file.model";
+
 export interface IVideo {
     id?: string,
     title: string,
     description: string,
-    videoUrl: string,
-    //image: File
-    miniatureUrl: string
+    video: IFile,
+    miniature: IFile
 }

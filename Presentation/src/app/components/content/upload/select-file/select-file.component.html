@@ -1,0 +1,21 @@
+<ng-container *ngIf="isFileSelected; then showFile else showSelectFile"></ng-container>
+<ng-template #showSelectFile>
+    <button mat-raised-button color="accent"
+        (click)="inputFile.click()" [disabled]="postRequestIsLoading">{{buttonText}}
+    </button>
+    <input hidden
+        type="file"
+        (change)="selectFile(inputFile.files)"
+        #inputFile
+    />
+</ng-template>
+<ng-template #showFile>
+    <button mat-raised-button color="accent">
+            {{fileName}}
+        <mat-icon   aria-hidden="false" 
+                    aria-label="Delete file" 
+                    fontIcon="close" 
+                    (click)="deleteFile()">
+        </mat-icon>
+    </button>
+</ng-template>

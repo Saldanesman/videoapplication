@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { DeleteVideoById } from 'src/app/core/videos/videos.action';
+import { DeleteVideoById } from 'src/app/core/videos/videos.actions';
 
 @Component({
   selector: 'app-confirm-dialog',

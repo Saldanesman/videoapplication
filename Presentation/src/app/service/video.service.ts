@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
+import { IFile } from '../shared/model/file.model';
 import { IVideo } from '../shared/model/video.model';
 
 @Injectable({
@@ -29,5 +30,9 @@ export class VideoService {
 
   public uploadVideo(video: IVideo): Observable<IVideo> {
     return this.httpClient.post<IVideo>(this.API, video );
+  }
+
+  public uploadFile(formData: FormData): Observable<IFile> {
+    return this.httpClient.post<IFile>(this.API + '/upload-file', formData );
   }
 }
