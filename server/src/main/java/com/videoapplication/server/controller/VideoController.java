@@ -5,6 +5,8 @@ import com.videoapplication.server.model.Video;
 import com.videoapplication.server.repo.VideoRepository;
 import com.videoapplication.server.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,8 +24,10 @@ public class VideoController {
     private FileService fileService;
 
     @GetMapping("")
-    List<Video> index() {
-        return videoRepository.findAll();
+    List<Video> index(@RequestParam(defaultValue = "0") int page,
+                      @RequestParam(defaultValue = "2") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return videoRepository.findAll(pageable).getContent();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
